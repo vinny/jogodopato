@@ -99,6 +99,13 @@ button {
 	margin: 0.5rem 0;
 	padding: 1rem 2rem;
 }
+button:hover {
+	cursor: pointer;
+	color: #333;
+}
+.duckimg:hover {
+	cursor: pointer;
+}
 </style>
 
 <script>
@@ -115,17 +122,17 @@ button {
 </head>
 
 <body>
-	<p>Clique abaixo para começar a jogar:</p>
+	<p>Clique no pato para começar a jogar:</p>
     <div id="div1" onclick="carregarDiv2()">
-		<img src="duck-dancing.png" alt="">
-		<br>
-		<button> Jogar </button>
+		<img class="duckimg" src="duck-dancing.png" alt="">
 	</div>
 
     <div id="div2" style="display: none;">
         <img src="duck-dancing.gif" alt="">
 		<br>
 		Parabéns, você ganhou!
+		<br><br>
+		<button onClick="window.location.reload();">Jogar Novamente</button>
     </div>
 
 </body>
