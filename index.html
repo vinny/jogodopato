@@ -1,7 +1,7 @@
 <html lang="pt-br">
 <head>
 
-<title>Jogo do Pato &#129414; &#129414;</title>
+<title>Jogo do Pato &#128377; &#129414;</title>
 
 <meta charset="UTF-8">
 <meta name="description" content="Explore a diversão ilimitada do 'Jogo do Pato'! Teste suas habilidades e divirta-se com este jogo viciante.">
@@ -12,7 +12,6 @@
 <link rel="icon" href="duck-dancing.gif" type="image/gif">
 
 <link href="#" rel="stylesheet">
-
 
 <style>
 /* Cool infinite background scrolling animation.
@@ -65,8 +64,8 @@
 /* Main styles */
 body {
 	margin-top: 5rem;
-	color: #999;
-	font: 400 16px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
+	color: #000;
+	font: bold 30px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
 	text-align: center;
 	/* img size is 50x50 */
 	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
@@ -89,6 +88,17 @@ body::before {
 	font-weight: 900;
 	font-style: normal;
 }
+button {
+	background-color: #118bee;
+	border: #118bee;
+	color: #fff;
+	border-radius: 5px;
+	display: inline-block;
+	font-size: medium;
+	font-weight: bold;
+	margin: 0.5rem 0;
+	padding: 1rem 2rem;
+}
 </style>
 
 <script>
@@ -105,11 +115,12 @@ body::before {
 </head>
 
 <body>
-
+	<p>Clique abaixo para começar a jogar:</p>
     <div id="div1" onclick="carregarDiv2()">
-		<img src="duck-dancing.gif" alt="">
+		<img src="duck-dancing.png" alt="">
 		<br>
-		Clique para jogar</div>
+		<button> Jogar </button>
+	</div>
 
     <div id="div2" style="display: none;">
         <img src="duck-dancing.gif" alt="">
