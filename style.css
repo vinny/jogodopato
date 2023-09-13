@@ -86,7 +86,7 @@ header {
 }
 
 main {
-	height: 370px;
+	height: 390px;
 	padding-bottom: 60px;
 	padding-left: 100px;
 	padding-right: 100px;
@@ -152,34 +152,14 @@ a.botao { text-decoration: none; }
 	background: #25d366;
 }
 
-.whatsapp-button:hover {
-	color: #25d366;
-	background: #fff;
-}
-
 .github-button {
 	background: #161616;
-}
-
-.github-button:hover {
-	color: #161616;
-	background: #fff;
 }
 
 .twitter-button {
 	background: #14171a;
 }
 
-.twitter-button:hover {
-	color: #14171a;
-	background: #fff;
-}
-
 .facebook-button {
 	background: #4060A5;
-}
-
-.facebook-button:hover {
-	color: #4060A5;
-	background: #fff;
 }
