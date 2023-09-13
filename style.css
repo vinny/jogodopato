@@ -1,0 +1,186 @@
+/* Cool infinite background scrolling animation.
+ * Twitter: @kootoopas
+ */
+/* Exo thin font from Google. */
+@import url(https://fonts.googleapis.com/css?family=Exo:100);
+/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
+/* Animations */
+@-webkit-keyframes bg-scrolling-reverse {
+  100% {
+	background-position: 50px 50px;
+  }
+}
+@-moz-keyframes bg-scrolling-reverse {
+  100% {
+	background-position: 50px 50px;
+  }
+}
+@-o-keyframes bg-scrolling-reverse {
+  100% {
+	background-position: 50px 50px;
+  }
+}
+@keyframes bg-scrolling-reverse {
+  100% {
+	background-position: 50px 50px;
+  }
+}
+@-webkit-keyframes bg-scrolling {
+  0% {
+	background-position: 50px 50px;
+  }
+}
+@-moz-keyframes bg-scrolling {
+  0% {
+	background-position: 50px 50px;
+  }
+}
+@-o-keyframes bg-scrolling {
+  0% {
+	background-position: 50px 50px;
+  }
+}
+@keyframes bg-scrolling {
+  0% {
+	background-position: 50px 50px;
+  }
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	color: #000;
+	font: bold 20px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
+	margin: 0;
+	min-height: 100%;
+	padding: 0;
+	position: relative;
+	width: 100%;
+	/* img size is 50x50 */
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
+	-webkit-animation: bg-scrolling-reverse 0.92s infinite;
+	/* Safari 4+ */
+	-moz-animation: bg-scrolling-reverse 0.92s infinite;
+	/* Fx 5+ */
+	-o-animation: bg-scrolling-reverse 0.92s infinite;
+	/* Opera 12+ */
+	animation: bg-scrolling-reverse 0.92s infinite;
+	/* IE 10+ */
+	-webkit-animation-timing-function: linear;
+	-moz-animation-timing-function: linear;
+	-o-animation-timing-function: linear;
+	animation-timing-function: linear;
+}
+
+header {
+	background: rgba(150, 150, 150, 0.5);
+	border-bottom: solid 1px;
+	font-size: 50px;
+	font-weight: 900;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+main {
+	padding-bottom: 60px;
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-top: 5px;
+	text-align: center;
+}
+
+button {
+	background-color: #118bee;
+	border: #118bee;
+	color: #fff;
+	border-radius: 5px;
+	display: inline-block;
+	font-size: medium;
+	font-weight: bold;
+	margin: 0.5rem 0;
+	padding: 1rem 2rem;
+}
+
+button:hover {
+	color: #333;
+	cursor: pointer;
+}
+
+.duckimg:hover {
+	cursor: pointer;
+}
+
+footer {
+	bottom: 0;
+	font-size: 13px;
+	height: 40px;
+	left: 0;
+	padding-top: 10px;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
+a, a:hover, a:active, a:visited {
+	color: #118bee;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a.botao {
+	display: inline-block;
+	cursor: pointer;
+	width: 13px;
+	height: 13px;
+	padding: 5px;
+	text-decoration: none;
+	text-align: center;
+	color: #fff;
+	font-size: 13px;
+	font-weight: normal;
+	border-radius: 15px;
+}
+
+a.botao { text-decoration: none; }
+
+.whatsapp-button {
+	background: #25d366;
+}
+
+.whatsapp-button:hover {
+	color: #25d366;
+	background: #fff;
+}
+
+.github-button {
+	background: #161616;
+	margin: 20px 10px;
+}
+
+.github-button:hover {
+	color: #161616;
+	background: #fff;
+}
+
+.twitter-button {
+	background: #14171a;
+	margin: 20px 10px;
+}
+
+.twitter-button:hover {
+	color: #14171a;
+	background: #fff;
+}
+
+.facebook-button {
+	background: #4060A5;
+}
+
+.facebook-button:hover {
+	color: #4060A5;
+	background: #fff;
+}

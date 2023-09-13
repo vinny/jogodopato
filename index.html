@@ -9,141 +9,15 @@
 <meta name="author" content="Vinny">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<meta property="og:url" content="https://www.jogodopato.com.br/index.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Jogo do Pato" />
+<meta property="og:description" content="Explore a diversão ilimitada do 'Jogo do Pato'! Teste suas habilidades e divirta-se com este jogo viciante." />
+<meta property="og:image" content="https://www.jogodopato.com.br/duck.png" />
+
 <link rel="icon" href="duck-dancing.gif" type="image/gif">
 
-<link href="#" rel="stylesheet">
-
-<style>
-/* Cool infinite background scrolling animation.
- * Twitter: @kootoopas
- */
-/* Exo thin font from Google. */
-@import url(https://fonts.googleapis.com/css?family=Exo:100);
-/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
-/* Animations */
-@-webkit-keyframes bg-scrolling-reverse {
-  100% {
-	background-position: 50px 50px;
-  }
-}
-@-moz-keyframes bg-scrolling-reverse {
-  100% {
-	background-position: 50px 50px;
-  }
-}
-@-o-keyframes bg-scrolling-reverse {
-  100% {
-	background-position: 50px 50px;
-  }
-}
-@keyframes bg-scrolling-reverse {
-  100% {
-	background-position: 50px 50px;
-  }
-}
-@-webkit-keyframes bg-scrolling {
-  0% {
-	background-position: 50px 50px;
-  }
-}
-@-moz-keyframes bg-scrolling {
-  0% {
-	background-position: 50px 50px;
-  }
-}
-@-o-keyframes bg-scrolling {
-  0% {
-	background-position: 50px 50px;
-  }
-}
-@keyframes bg-scrolling {
-  0% {
-	background-position: 50px 50px;
-  }
-}
-
-html {
-	height: 100%;
-}
-
-body {
-	color: #000;
-	font: bold 30px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
-	margin: 0;
-	min-height: 100%;
-	padding: 0;
-	position: relative;
-	width: 100%;
-	/* img size is 50x50 */
-	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
-	-webkit-animation: bg-scrolling-reverse 0.92s infinite;
-	/* Safari 4+ */
-	-moz-animation: bg-scrolling-reverse 0.92s infinite;
-	/* Fx 5+ */
-	-o-animation: bg-scrolling-reverse 0.92s infinite;
-	/* Opera 12+ */
-	animation: bg-scrolling-reverse 0.92s infinite;
-	/* IE 10+ */
-	-webkit-animation-timing-function: linear;
-	-moz-animation-timing-function: linear;
-	-o-animation-timing-function: linear;
-	animation-timing-function: linear;
-}
-
-header {
-	background: rgba(150, 150, 150, 0.5);
-	border-bottom: solid 1px;
-	font-size: 50px;
-	font-weight: 900;
-	padding-bottom: 20px;
-	padding-top: 20px;
-	text-align: center;
-	width: 100%;
-}
-
-main {
-	padding-bottom: 60px;
-	padding-left: 100px;
-	padding-right: 100px;
-	padding-top: 5px;
-	text-align: center;
-}
-
-button {
-	background-color: #118bee;
-	border: #118bee;
-	color: #fff;
-	border-radius: 5px;
-	display: inline-block;
-	font-size: medium;
-	font-weight: bold;
-	margin: 0.5rem 0;
-	padding: 1rem 2rem;
-}
-
-button:hover {
-	cursor: pointer;
-	color: #333;
-}
-
-.duckimg:hover {
-	cursor: pointer;
-}
-
-footer {
-	background: rgba(150, 150, 150, 0.5);
-	border-top: solid 1px;
-	bottom: 0;
-	font-size: 15px;
-	height: 40px;
-	left: 0;
-	padding-top: 10px;
-	position: absolute;
-	text-align: center;
-	width: 100%;
-}
-
-</style>
+<link href="style.css" rel="stylesheet">
 
 <script>
 	function carregarDiv2() {
@@ -156,6 +30,8 @@ footer {
 		div2.style.display = 'block';
 	}
 </script>
+
+<script src="https://kit.fontawesome.com/a213e9e534.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -179,8 +55,9 @@ footer {
 	</main>
 
     <footer>
-		email: contato@example.com
-		telefone: (123) 456-7890
+		Contato: <a href="https://twitter.com/marcusvinny" class="botao twitter-button" target="_blank"><i class="fa-brands fa-x-twitter"></i></a> | <a href="https://github.com/vinny" class="botao github-button" target="_blank"><i class="fa-brands fa-github"></i></a> || Compartilhar com amigos: <a href="https://wa.me/?text=Explore a diversão ilimitada do 'Jogo do Pato'! Teste suas habilidades e divirta-se com este jogo viciante&nbsp;https://www.jogodopato.com.br/" class="botao whatsapp-button" target="_blank"><i class="fa-brands fa-whatsapp"></i></a> <a href="https://twitter.com/intent/tweet?text=Explore a diversão ilimitada do 'Jogo do Pato'! Teste suas habilidades e divirta-se com este jogo viciante&url=https://www.jogodopato.com.br/" class="botao twitter-button" target="_blank"><i class="fa-brands fa-x-twitter"></i></a> <a href="https://www.facebook.com/sharer/sharer.php?t=Explore a diversão ilimitada do 'Jogo do Pato'! Teste suas habilidades e divirta-se com este jogo viciante&amp;u=https://www.jogodopato.com.br/" class="botao facebook-button" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+		<br>
+		Feito pela mente nada criativa do <a href="https://github.com/vinny/jogodopato" target="_blank">Vinny</a> | Conside fazer uma doação: <a href="https://www.paypal.com/donate/?hosted_button_id=AN6LU3DRDNE72" target="_blank"><i class="fa-brands fa-paypal paypal-button" style="color: #00457C;"></i></a>
     </footer>
 
 </body>
