@@ -5,7 +5,7 @@
 
 <meta charset="UTF-8">
 <meta name="description" content="Explore a diversão ilimitada do 'Jogo do Pato'! Teste suas habilidades e divirta-se com este jogo viciante.">
-<meta name="keywords" content="">
+<meta name="keywords" content="jogo, pato, jogo do pato, diversão, online, habilidade, entretenimento, passatempo, desafio">
 <meta name="author" content="Vinny">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,6 +32,16 @@
 </script>
 
 <script src="https://kit.fontawesome.com/a213e9e534.js" crossorigin="anonymous"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDJNKWWYML"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MDJNKWWYML');
+</script>
 </head>
 
 <body>
@@ -42,11 +52,11 @@
 	<main>
 		Clique no pato para começar a jogar:
 		<div id="div1" onclick="carregarDiv2()">
-			<img class="duckimg" src="duck.png" alt="">
+			<img class="duckimg" src="duck.png" alt="Pato">
 		</div>
 
 		<div id="div2" style="display: none;">
-			<img src="duck-dancing.gif" alt="">
+			<img src="duck-dancing.gif" alt="Pato dançando">
 			<br>
 			Parabéns, você ganhou!
 			<br><br>
