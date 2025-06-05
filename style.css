@@ -117,10 +117,10 @@ button:hover {
 }
 
 footer {
-	font-size: 13px;
+	font-size: 19px;
 	height: 40px;
 	left: 0;
-	line-height: 3;
+	line-height: 1.8;
 	padding-top: 10px;
 	position: absolute;
 	text-align: center;
@@ -136,13 +136,13 @@ a, a:hover, a:active, a:visited {
 a.botao {
 	display: inline-block;
 	cursor: pointer;
-	width: 13px;
-	height: 13px;
+	width: 16px;
+	height: 16px;
 	padding: 5px;
 	text-decoration: none;
 	text-align: center;
 	color: #fff;
-	font-size: 13px;
+	font-size: 16px;
 	font-weight: normal;
 	border-radius: 15px;
 }
