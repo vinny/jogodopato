@@ -46,17 +46,11 @@
   }
 }
 
-html {
-	height: 100%;
-}
-
 body {
 	color: #000;
 	font: bold 20px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
-	margin: 0;
-	min-height: 100vh;
-	flex-direction: column;
-	display: flex;
+    height: 100%;
+    margin: 0;
 	/* img size is 50x50 */
 	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
 	-webkit-animation: bg-scrolling-reverse 0.92s infinite;
@@ -76,19 +70,18 @@ body {
 header {
 	background: rgba(150, 150, 150, 0.5);
 	border-bottom: solid 1px;
-	font-size: 40px;
+	font-size: 45px;
 	font-weight: 900;
-	padding-bottom: 20px;
-	padding-top: 30px;
+	padding: 20px;
 	text-align: center;
-	width: 100%;
 }
 
 main {
-	padding-top: 5px;
+	margin-top: 28px;
 	text-align: center;
-	font-size: 18px;
-	flex: 1;
+	font-size: 22px;
+	min-height: 100px;
+    padding: 20px;
 }
 
 button {
@@ -110,14 +103,6 @@ button:hover {
 
 .duckimg:hover {
 	cursor: pointer;
-}
-
-footer {
-	font-size: 19px;
-	line-height: 1.8;
-	background: rgba(150, 150, 150, 0.5);
-	text-align: center;
-	padding: 10px;
 }
 
 a, a:hover, a:active, a:visited {
