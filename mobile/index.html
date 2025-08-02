@@ -6,21 +6,55 @@
     <meta name="robots" content="noindex, nofollow">
     <title id="gameTitleMeta">Duck Tap</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Iconify CDN link added -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        /* CSS Variables for theming */
+        :root {
+            --bg-color: #f0f9ff; /* Light blue background */
+            --text-color: #334155; /* Slate 700 */
+            --heading-color: #2563eb; /* Blue 600 */
+            --container-bg: #ffffff;
+            --button-bg-primary: #3b82f6; /* Blue 500 */
+            --button-text-primary: #ffffff;
+            --button-hover-primary: #2563eb; /* Blue 600 */
+            --modal-bg: #ffffff;
+            --modal-text: #334155;
+            --modal-border: #e2e8f0; /* Slate 200 */
+            --wins-text-color: #334155; /* Default for wins text */
+        }
+
+        .dark-theme {
+            --bg-color: #1a202c; /* Dark background */
+            --text-color: #e2e8f0; /* Light text */
+            --heading-color: #60a5fa; /* Lighter blue */
+            --container-bg: #2d3748; /* Darker container */
+            --button-bg-primary: #4299e1; /* Lighter blue */
+            --button-text-primary: #ffffff;
+            --button-hover-primary: #3182ce;
+            --modal-bg: #2d3748;
+            --modal-text: #e2e8f0;
+            --modal-border: #4a5568;
+            --wins-text-color: #e2e8f0; /* Dark theme for wins text */
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f9ff;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
             overflow: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            flex-direction: column; /* Allow content to stack vertically */
         }
         .game-container {
-            background-color: #ffffff;
+            background-color: var(--container-bg);
             padding: 2.5rem;
             border-radius: 1.5rem;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
@@ -31,18 +65,25 @@
             gap: 1.5rem;
             max-width: 90vw;
             width: 400px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .duck-image {
+        .duck-image-container { /* New container for duck images */
             width: 180px;
             height: 180px;
             cursor: pointer;
-            transition: transform 0.1s ease-out;
+            position: relative; /* For absolute positioning of images */
+        }
+        .duck-image-container img {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 0.1s ease-out;
         }
-        .duck-image:active {
+        .duck-image-container img:active {
             transform: scale(0.95);
-        }
-        .dancing {
         }
         .social-button {
             display: inline-flex;
@@ -55,7 +96,7 @@
             font-weight: 600;
             color: #ffffff;
             text-decoration: none;
-            transition: background-color 0.2s ease-in-out, transform 0.1s ease-out;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-out, box-shadow 0.3s ease;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
         .social-button:hover {
@@ -71,9 +112,237 @@
         .facebook-bg:hover { background-color: #156ac7; }
         .whatsapp-bg { background-color: #25D366; }
         .whatsapp-bg:hover { background-color: #20b857; }
-        .social-button i {
+        /* Adjusted CSS for Iconify icons */
+        .social-button iconify-icon,
+        .settings-button iconify-icon,
+        .heart-button iconify-icon { /* Added heart button icon to this rule */
             font-size: 24px;
             line-height: 1;
+        }
+
+        /* Buttons Container */
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem; /* Space between buttons */
+            margin-top: 2rem;
+        }
+
+        /* Settings Button */
+        .settings-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #6b7280; /* Gray 500 */
+            color: #ffffff; /* White text */
+            border: none;
+            border-radius: 9999px; /* Fully rounded */
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease-out, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        .settings-button:hover {
+            background-color: #4b5563; /* Gray 700 on hover */
+            transform: translateY(-2px);
+        }
+        .settings-button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        /* Heart Button */
+        .heart-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #ef4444; /* Red 500 */
+            color: #ffffff; /* White text */
+            border: none;
+            border-radius: 9999px; /* Fully rounded */
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease-out, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        .heart-button:hover {
+            background-color: #dc2626; /* Red 600 on hover */
+            transform: translateY(-2px);
+        }
+        .heart-button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        /* Settings Modal & Donate Modal - Shared Styles */
+        .settings-modal-overlay,
+        .donate-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .settings-modal-overlay.open,
+        .donate-modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .settings-modal-content,
+        .donate-modal-content {
+            background-color: var(--modal-bg);
+            color: var(--modal-text);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+            border: 1px solid var(--modal-border);
+        }
+        .settings-modal-overlay.open .settings-modal-content,
+        .donate-modal-overlay.open .donate-modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .settings-modal-content h2,
+        .donate-modal-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .settings-modal-content button,
+        .donate-modal-content button {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 0.75rem;
+            background-color: var(--button-bg-primary);
+            color: var(--button-text-primary);
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease-out;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+        }
+        .settings-modal-content button:hover,
+        .donate-modal-content button:hover {
+            background-color: var(--button-hover-primary);
+            transform: translateY(-1px);
+        }
+        .settings-modal-content button:active,
+        .donate-modal-content button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+        .settings-modal-content .close-button,
+        .donate-modal-content .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--modal-text);
+            cursor: pointer;
+            width: auto;
+            padding: 0.5rem;
+            margin-bottom: 0;
+            box-shadow: none;
+            transition: color 0.2s ease;
+        }
+        .settings-modal-content .close-button:hover,
+        .donate-modal-content .close-button:hover {
+            color: var(--heading-color);
+            transform: none;
+        }
+        .theme-toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding: 0.8rem 1.2rem;
+            background-color: var(--container-bg); /* Use container background for this element */
+            border-radius: 0.75rem;
+            border: 1px solid var(--modal-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .theme-toggle-container span {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .theme-toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .theme-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        /* Style for the wins text to use the CSS variable */
+        #winsText {
+            color: var(--wins-text-color);
+            transition: color 0.3s ease;
+        }
+
+        /* Donate modal specific styling */
+        .donate-modal-content p {
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        .donate-modal-content a {
+            color: var(--heading-color);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        .donate-modal-content a:hover {
+            color: var(--button-hover-primary);
         }
     </style>
 </head>
@@ -82,31 +351,84 @@
         <h1 class="text-4xl font-bold text-blue-600 mb-4" id="gameTitle">Duck Tap</h1>
 
         <div class="text-2xl font-semibold text-gray-700 mb-4">
-            <span id="winsText">Vitórias</span>: <span id="winCounter" class="text-blue-500">0</span>
+            <span id="winsText">Vitórias:</span> <span id="winCounter" class="text-blue-500">0</span>
         </div>
 
-        <img
-            id="duck"
-            src="https://www.jogodopato.com.br/duck.png"
-            alt="Pato"
-            class="duck-image"
-        >
+        <!-- Duck Image Containers -->
+        <div class="duck-image-container" id="duckImageContainer">
+            <img id="staticDuck" src="https://www.jogodopato.com.br/duck.png" alt="Pato" style="display: block;">
+            <img id="dancingDuck" src="https://www.jogodopato.com.br/duck-dancing.gif" alt="Pato dançando" style="display: none;">
+        </div>
 
         <div class="flex flex-wrap justify-center gap-3 mt-4">
             <a href="#" id="shareTwitter" class="social-button twitter-bg">
-                <i class="fa-brands fa-x-twitter"></i>
+                <iconify-icon icon="fa6-brands:x-twitter"></iconify-icon>
             </a>
             <a href="#" id="shareFacebook" class="social-button facebook-bg">
-                <i class="fab fa-facebook-f"></i>
+                <iconify-icon icon="fa6-brands:facebook-f"></iconify-icon>
             </a>
             <a href="#" id="shareWhatsApp" class="social-button whatsapp-bg">
-                <i class="fab fa-whatsapp"></i>
+                <iconify-icon icon="fa6-brands:whatsapp"></iconify-icon>
             </a>
         </div>
     </div>
 
+    <!-- Buttons Container -->
+    <div class="buttons-container">
+        <!-- Heart Button -->
+        <button id="heartButton" class="heart-button">
+            <iconify-icon icon="mdi:heart"></iconify-icon>
+        </button>
+        <!-- Settings Button -->
+        <button id="settingsButton" class="settings-button">
+            <iconify-icon icon="mdi:cog"></iconify-icon>
+        </button>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="settings-modal-overlay">
+        <div class="settings-modal-content">
+            <button class="close-button" id="closeSettingsModalButton">&times;</button>
+            <h2>Configurações</h2>
+
+            <div class="theme-toggle-container">
+                <span id="themeText">Alterar Tema</span>
+                <label class="theme-toggle">
+                    <input type="checkbox" id="themeToggleButton">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <button id="rateGameButton">
+                <iconify-icon icon="fa6-solid:star" class="mr-2"></iconify-icon> Avaliar o Jogo
+            </button>
+            <button id="privacyPolicyButton">
+                <iconify-icon icon="fa6-solid:shield-alt" class="mr-2"></iconify-icon> Política de Privacidade
+            </button>
+            <button id="supportButton">
+                <iconify-icon icon="fa6-solid:envelope" class="mr-2"></iconify-icon> Suporte
+            </button>
+            <!-- New Reset Progress Button -->
+            <button id="resetProgressButton" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg mt-4">
+                <iconify-icon icon="fa6-solid:undo" class="mr-2"></iconify-icon> Resetar Progresso
+            </button>
+        </div>
+    </div>
+
+    <!-- Donate Modal -->
+    <div id="donateModal" class="donate-modal-overlay">
+        <div class="donate-modal-content">
+            <button class="close-button" id="closeDonateModalButton">&times;</button>
+            <h2 id="donateModalTitle">Ajude quem faz!</h2>
+            <p id="donateModalText1">Oi! Eu sou o Vinny, o responsável pelo desenvolvimento deste app.</p>
+            <p id="donateModalText2">Se você curtiu e quiser dar uma força, pode fazer uma doação voluntária pelo Ko-fi:</p>
+            <p><a href="https://ko-fi.com/J3J51IS0BE" target="_blank" id="koFiLink">👉 https://ko-fi.com/J3J51IS0BE</a></p>
+            <p id="donateModalText3">É totalmente opcional e não desbloqueia nada no app — só me deixa muito feliz mesmo 😄</p>
+        </div>
+    </div>
+
     <script>
-        const duckImage = document.getElementById('duck');
+        // Get references to DOM elements
         const winCounter = document.getElementById('winCounter');
         const shareTwitter = document.getElementById('shareTwitter');
         const shareFacebook = document.getElementById('shareFacebook');
@@ -115,45 +437,120 @@
         const gameTitleMeta = document.getElementById('gameTitleMeta');
         const winsTextElement = document.getElementById('winsText');
 
+        // Duck Image Elements
+        const duckImageContainer = document.getElementById('duckImageContainer');
+        const staticDuck = document.getElementById('staticDuck');
+        const dancingDuck = document.getElementById('dancingDuck');
+
+        // Settings Modal Elements
+        const settingsButton = document.getElementById('settingsButton');
+        const settingsModal = document.getElementById('settingsModal');
+        const closeSettingsModalButton = document.getElementById('closeSettingsModalButton'); // Specific close button for settings
+        const themeToggleButton = document.getElementById('themeToggleButton');
+        const themeTextElement = document.getElementById('themeText');
+        const rateGameButton = document.getElementById('rateGameButton');
+        const privacyPolicyButton = document.getElementById('privacyPolicyButton');
+        const supportButton = document.getElementById('supportButton');
+        const resetProgressButton = document.getElementById('resetProgressButton');
+
+        // Donate Modal Elements
+        const heartButton = document.getElementById('heartButton');
+        const donateModal = document.getElementById('donateModal');
+        const closeDonateModalButton = document.getElementById('closeDonateModalButton'); // Specific close button for donate
+        const donateModalTitle = document.getElementById('donateModalTitle');
+        const donateModalText1 = document.getElementById('donateModalText1');
+        const donateModalText2 = document.getElementById('donateModalText2');
+        const koFiLink = document.getElementById('koFiLink');
+        const donateModalText3 = document.getElementById('donateModalText3');
+
+
+        // Initialize wins counter
         let wins = 0;
+        // Define game title and URL for sharing
         const gameTitle = "Duck Tap";
-        const gameUrl = "https://play.google.com/store/apps/details?id=br.com.jogodopato.vinny"; 
+        const gameUrl = "https://play.google.com/store/apps/details?id=br.com.jogodopato.vinny"; // Placeholder URL
 
-        const staticDuckUrl = "https://www.jogodopato.com.br/duck.png";
-        const dancingDuckGifUrl = "https://www.jogodopato.com.br/duck-dancing.gif";
-
-        duckImage.src = staticDuckUrl;
-
+        // Translations for different languages
         const translations = {
             'pt': {
                 gameTitle: 'Duck Tap',
-                winsText: 'Vitórias',
+                winsText: 'Vitórias:',
                 shareMessage: (wins) => `Acabei de conseguir ${wins} vitórias no jogo ${gameTitle}! Venha jogar também!`,
-                shareMessageWhatsApp: (wins) => `Acabei de conseguir ${wins} vitórias no jogo ${gameTitle}! Venha jogar também: ${gameUrl}`
+                shareMessageWhatsApp: (wins) => `Acabei de conseguir ${wins} vitórias no jogo ${gameTitle}! Venha jogar também: ${gameUrl}`,
+                settings: {
+                    title: 'Configurações',
+                    theme: 'Alterar Tema',
+                    rate: 'Avaliar o Jogo',
+                    privacy: 'Política de Privacidade',
+                    support: 'Suporte',
+                    resetProgress: 'Resetar Progresso'
+                },
+                donate: {
+                    title: 'Ajude quem faz!',
+                    text1: 'Oi! Eu sou o Vinny, o responsável pelo desenvolvimento deste app.',
+                    text2: 'Se você curtiu e quiser dar uma força, pode fazer uma doação voluntária pelo Ko-fi:',
+                    text3: 'É totalmente opcional e não desbloqueia nada no app — só me deixa muito feliz mesmo 😄'
+                }
             },
             'en': {
                 gameTitle: 'Duck Tap',
-                winsText: 'Wins',
+                winsText: 'Wins:',
                 shareMessage: (wins) => `I just got ${wins} wins in the ${gameTitle} game! Come play too!`,
-                shareMessageWhatsApp: (wins) => `I just got ${wins} wins in the ${gameTitle} game! Come play too: ${gameUrl}`
+                shareMessageWhatsApp: (wins) => `I just got ${wins} wins in the ${gameTitle} game! Come play too: ${gameUrl}`,
+                settings: {
+                    title: 'Settings',
+                    theme: 'Change Theme',
+                    rate: 'Rate Game',
+                    privacy: 'Privacy Policy',
+                    support: 'Support',
+                    resetProgress: 'Reset Progress'
+                },
+                donate: {
+                    title: 'Support the Developer!',
+                    text1: 'Hi! I\'m Vinny, the developer responsible for this app.',
+                    text2: 'If you enjoyed it and want to support, you can make a voluntary donation via Ko-fi:',
+                    text3: 'It\'s completely optional and doesn\'t unlock anything in the app — it just makes me very happy 😄'
+                }
             },
             'es': {
                 gameTitle: 'Duck Tap',
-                winsText: 'Victorias',
+                winsText: 'Victorias:',
                 shareMessage: (wins) => `¡Acabo de conseguir ${wins} victorias en el juego ${gameTitle}! ¡Ven a jugar también!`,
-                shareMessageWhatsApp: (wins) => `¡Acabo de conseguir ${wins} victorias en el juego ${gameTitle}! ¡Ven a jugar también: ${gameUrl}`
+                shareMessageWhatsApp: (wins) => `¡Acabo de conseguir ${wins} victorias en el juego ${gameTitle}! ¡Ven a jugar también: ${gameUrl}`,
+                settings: {
+                    title: 'Ajustes',
+                    theme: 'Cambiar Tema',
+                    rate: 'Calificar Juego',
+                    privacy: 'Política de Privacidad',
+                    support: 'Soporte',
+                    resetProgress: 'Restablecer Progreso'
+                },
+                donate: {
+                    title: '¡Apoya al desarrollador!',
+                    text1: '¡Hola! Soy Vinny, el desarrollador responsable de esta aplicación.',
+                    text2: 'Si te gustó y quieres apoyar, puedes hacer una donación voluntaria a través de Ko-fi:',
+                    text3: 'Es completamente opcional y no desbloquea nada en la aplicación, solo me hace muy feliz 😄'
+                }
             }
         };
 
+        /**
+         * Detects the user's browser language and returns the appropriate short code.
+         * Falls back to 'en' if the language is not supported.
+         * @returns {string} The detected or default language code.
+         */
         function getBrowserLanguage() {
             const lang = navigator.language || navigator.languages[0];
             const shortLang = lang.split('-')[0];
             if (translations[shortLang]) {
                 return shortLang;
             }
-            return 'en';
+            return 'en'; // Default to English
         }
 
+        /**
+         * Applies translations to the game elements based on the detected browser language.
+         */
         function applyTranslations() {
             const lang = getBrowserLanguage();
             const currentTranslations = translations[lang];
@@ -161,46 +558,147 @@
             gameTitleElement.textContent = currentTranslations.gameTitle;
             gameTitleMeta.textContent = currentTranslations.gameTitle;
             winsTextElement.textContent = currentTranslations.winsText;
+
+            // Apply settings modal translations
+            settingsModal.querySelector('h2').textContent = currentTranslations.settings.title;
+            themeTextElement.textContent = currentTranslations.settings.theme;
+            rateGameButton.innerHTML = `<iconify-icon icon="fa6-solid:star" class="mr-2"></iconify-icon> ${currentTranslations.settings.rate}`;
+            privacyPolicyButton.innerHTML = `<iconify-icon icon="fa6-solid:shield-alt" class="mr-2"></iconify-icon> ${currentTranslations.settings.privacy}`;
+            supportButton.innerHTML = `<iconify-icon icon="fa6-solid:envelope" class="mr-2"></iconify-icon> ${currentTranslations.settings.support}`;
+            resetProgressButton.innerHTML = `<iconify-icon icon="fa6-solid:undo" class="mr-2"></iconify-icon> ${currentTranslations.settings.resetProgress}`;
+
+            // Apply donate modal translations
+            donateModalTitle.textContent = currentTranslations.donate.title;
+            donateModalText1.textContent = currentTranslations.donate.text1;
+            donateModalText2.textContent = currentTranslations.donate.text2;
+            donateModalText3.textContent = currentTranslations.donate.text3;
         }
 
+        /**
+         * Toggles the theme between light and dark mode.
+         * Stores the preference in localStorage.
+         */
+        function toggleTheme() {
+            const isDark = document.body.classList.toggle('dark-theme');
+            localStorage.setItem('duckTapTheme', isDark ? 'dark' : 'light');
+            themeToggleButton.checked = isDark; // Update checkbox state
+        }
+
+        /**
+         * Applies the theme saved in localStorage on page load.
+         */
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('duckTapTheme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                themeToggleButton.checked = true;
+            } else {
+                document.body.classList.remove('dark-theme');
+                themeToggleButton.checked = false;
+            }
+        }
+
+        // Load wins from local storage if available
         if (localStorage.getItem('duckTapWins')) {
             wins = parseInt(localStorage.getItem('duckTapWins'));
             winCounter.textContent = wins;
         }
 
-        duckImage.addEventListener('click', () => {
+        // Event listener for duck image click
+        duckImageContainer.addEventListener('click', () => {
             wins++;
             winCounter.textContent = wins;
-            localStorage.setItem('duckTapWins', wins);
+            localStorage.setItem('duckTapWins', wins); // Save wins to local storage
 
-            duckImage.src = dancingDuckGifUrl;
+            // Hide static duck and show dancing duck
+            staticDuck.style.display = 'none';
+            dancingDuck.style.display = 'block';
         });
 
+        // Event listener for Twitter share button
         shareTwitter.addEventListener('click', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default link behavior
             const lang = getBrowserLanguage();
             const text = translations[lang].shareMessage(wins);
             const twitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(gameUrl)}`;
-            window.open(twitterUrl, '_blank');
+            window.open(twitterUrl, '_blank'); // Open share dialog in new tab
         });
 
+        // Event listener for Facebook share button
         shareFacebook.addEventListener('click', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default link behavior
             const lang = getBrowserLanguage();
             const text = translations[lang].shareMessage(wins);
             const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(gameUrl)}&quote=${encodeURIComponent(text)}`;
-            window.open(facebookUrl, '_blank');
+            window.open(facebookUrl, '_blank'); // Open share dialog in new tab
         });
 
+        // Event listener for WhatsApp share button
         shareWhatsApp.addEventListener('click', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default link behavior
             const lang = getBrowserLanguage();
             const text = translations[lang].shareMessageWhatsApp(wins);
             const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-            window.open(whatsappUrl, '_blank');
+            window.open(whatsappUrl, '_blank'); // Open share dialog in new tab
         });
 
-        document.addEventListener('DOMContentLoaded', applyTranslations);
+        // Event listeners for Settings Modal
+        settingsButton.addEventListener('click', () => {
+            settingsModal.classList.add('open');
+        });
+
+        closeSettingsModalButton.addEventListener('click', () => {
+            settingsModal.classList.remove('open');
+        });
+
+        // Close settings modal when clicking outside the content
+        settingsModal.addEventListener('click', (e) => {
+            if (e.target === settingsModal) {
+                settingsModal.classList.remove('open');
+            }
+        });
+
+        themeToggleButton.addEventListener('change', toggleTheme);
+
+        rateGameButton.addEventListener('click', () => {
+            window.open(gameUrl, '_blank'); // Open Play Store link
+        });
+
+        privacyPolicyButton.addEventListener('click', () => {
+            window.open('https://www.jogodopato.com.br/docs/legal.html', '_blank'); // Open Privacy Policy link
+        });
+
+        supportButton.addEventListener('click', () => {
+            window.location.href = 'mailto:vinny@vinny.quest'; // Open email client
+        });
+
+        // Event listener for the new Reset Progress button
+        resetProgressButton.addEventListener('click', () => {
+            localStorage.removeItem('duckTapWins'); // Clear the wins from local storage
+            location.reload(); // Reload the page to reset the game
+        });
+
+        // Event listeners for Donate Modal
+        heartButton.addEventListener('click', () => {
+            donateModal.classList.add('open');
+        });
+
+        closeDonateModalButton.addEventListener('click', () => {
+            donateModal.classList.remove('open');
+        });
+
+        // Close donate modal when clicking outside the content
+        donateModal.addEventListener('click', (e) => {
+            if (e.target === donateModal) {
+                donateModal.classList.remove('open');
+            }
+        });
+
+        // Apply translations and saved theme when the DOM content is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTranslations();
+            applySavedTheme();
+        });
     </script>
 </body>
 </html>
